@@ -1,0 +1,39 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "Lil Trump",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": [
+            "help",
+            "give me some help",
+            "what can I ask you",
+            "how can I use this skill"
+          ]
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "LaunchRequest",
+          "samples": []
+        },
+        {
+          "name": "JokeIntent",
+          "samples": [
+            "tell me a racist joke",
+            "give me a racist joke",
+            "tell me something funny"
+          ]
+        }
+      ],
+      "types": []
+    }
+  }
+}
