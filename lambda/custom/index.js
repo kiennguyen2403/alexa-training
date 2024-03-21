@@ -10,31 +10,29 @@
 
 const Alexa = require('ask-sdk-core');
 
-
 const jokes = [
   "What's the difference between a black person and a monkey? I voted for a monkey last election and he won.",
-  "What do you call a black person on the moon? An astronaut, you racist.",
+  'What do you call a black person on the moon? An astronaut, you racist.',
   "Why do a black person always have a hard time? Because they're always in the back of the line.",
-  "Muslims are like a box of chocolates. They kill your dog.",
+  'Muslims are like a box of chocolates. They kill your dog.',
   "What's the difference between a black person and a park bench? A park bench can support a family.",
-]
+];
 
-export const LaunchRequestHandler = {
+const LaunchRequestHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'LaunchRequest';
   },
   handle(handlerInput) {
-    const speakOutput = "Hey, My name is Lil Trump! Ask me something.";
+    const speakOutput = 'Hey, My name is Lil Trump! Ask me something.';
 
     return handlerInput.responseBuilder
       .speak(speakOutput)
+      .withSimpleCard('Lil Trump', speakOutput)
       .getResponse();
-  }
+  },
 };
 
-
-
-export const JokeIntentHandler = {
+const JokeIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
       && Alexa.getIntentName(handlerInput.requestEnvelope) === 'JokeIntent';
@@ -42,14 +40,13 @@ export const JokeIntentHandler = {
   handle(handlerInput) {
     const joke = jokes[Math.floor(Math.random() * jokes.length)];
 
-
     return handlerInput.responseBuilder
       .speak(joke)
       .getResponse();
-  }
+  },
 };
 
-export const HelpIntentHandler = {
+const HelpIntentHandler = {
   canHandle(handlerInput) {
     return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
       && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.HelpIntent';
@@ -60,10 +57,10 @@ export const HelpIntentHandler = {
     return handlerInput.responseBuilder
       .speak(speakOutput)
       .getResponse();
-  }
+  },
 };
 
-export const ErrorHandler = {
+const ErrorHandler = {
   canHandle() {
     return true;
   },
@@ -75,10 +72,8 @@ export const ErrorHandler = {
     return handlerInput.responseBuilder
       .speak(speakOutput)
       .getResponse();
-  }
+  },
 };
-
-
 
 const skillBuilder = Alexa.SkillBuilders.custom();
 
@@ -86,7 +81,7 @@ exports.handler = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
     JokeIntentHandler,
-    HelpIntentHandler
+    HelpIntentHandler,
   )
   .addErrorHandlers(ErrorHandler)
   .lambda();
